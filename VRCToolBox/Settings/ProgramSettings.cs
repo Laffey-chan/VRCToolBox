@@ -50,6 +50,8 @@ namespace VRCToolBox.Settings
         /// <summary>写真整理時に日付ごとにフォルダを分けるかどうか。</summary>
         public bool MakeDayFolder { get; set; } = true;
 
+        public string Language { get; set; } = "en-GP";
+
         /// <summary>VRChatが書き出すログの場所。</summary>
         public string VRChatLogPath { get; set; } = ProgramConst.DefaultVRChatLogPath;
 

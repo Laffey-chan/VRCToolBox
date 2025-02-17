@@ -11,6 +11,7 @@
         xmlns:pc="clr-namespace:VRCToolBox.Pictures.Converter"
         xmlns:vm="clr-namespace:VRCToolBox.Pictures.ViewModel"
         xmlns:vb="clr-namespace:VRCToolBox.Pictures.Behavior"
+        xmlns:pr="clr-namespace:VRCToolBox.Properties"
         x:Class="VRCToolBox.Pictures.PictureExplore"
         mc:Ignorable="d"
         d:Height="800" d:Width="1284"
@@ -85,21 +86,21 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button ToolTip="候補リストからすべての写真を削除します。" Grid.Column="0" Grid.Row="1" Background="Transparent"
+                <Button ToolTip="{x:Static pr:Resources.CandiToolTip}" Grid.Column="0" Grid.Row="1" Background="Transparent"
                     Command="{Binding RemoveAllPhotosFromHoldPhotosCommand, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Viewbox>
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon Symbol="Refresh"/>
-                            <TextBlock Text="候補リスト初期化" Margin="5,0,0,0"/>
+                            <TextBlock Text="{x:Static pr:Resources.CandidateList}" Margin="5,0,0,0"/>
                         </StackPanel>
                     </Viewbox>
                 </Button>
-                <Button ToolTip="表示中の写真を候補リストに加えます。" Grid.Column="1" Grid.Row="1" Background="Transparent"
+                <Button ToolTip="{x:Static pr:Resources.CandiAddToolTip}" Grid.Column="1" Grid.Row="1" Background="Transparent"
                     Command="{Binding AddToHoldPhotosCommand, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Viewbox>
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon Symbol="Add"/>
-                            <TextBlock Text="候補へ加える" Margin="5,0,0,0"/>
+                            <TextBlock Text="{x:Static pr:Resources.CandidateAdd}" Margin="5,0,0,0"/>
                         </StackPanel>
                     </Viewbox>
                 </Button>
@@ -231,7 +232,7 @@
                         <Viewbox>
                             <StackPanel Orientation="Horizontal">
                                 <ui:SymbolIcon Symbol="Zoom"/>
-                                <TextBlock Text="検索条件" Margin="10,0,0,0" FontSize="20"/>
+                                <TextBlock Text="{x:Static pr:Resources.SearchConditions}" Margin="10,0,0,0" FontSize="20"/>
                             </StackPanel>
                         </Viewbox>
                     </Button>
@@ -284,7 +285,7 @@
                     </Grid.RowDefinitions>
                     <TextBox Grid.Row="0" MinHeight="1"
                              VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                             ui:ControlHelper.PlaceholderText="写真のタグを入力……" Text="{Binding TagText.Value, UpdateSourceTrigger=PropertyChanged}">
+                             ui:ControlHelper.PlaceholderText="{x:Static pr:Resources.TagPlaceHolder}" Text="{Binding TagText.Value, UpdateSourceTrigger=PropertyChanged}">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Modifiers="" Command="{Binding SaveTagAsyncCommand}"/>
                         </TextBox.InputBindings>
@@ -323,7 +324,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label Content="アバター" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Content="{x:Static pr:Resources.Avatar}" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                     <ComboBox Grid.Row="0" ItemsSource="{Binding AvatarList}" x:Name="CB_Avatar"
                               SelectedValue="{Binding AvatarId.Value}" SelectedValuePath="Id" 
                               FontSize="16" Grid.Column="1">
@@ -333,14 +334,14 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Label Content="製作者" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Content="{x:Static pr:Resources.Producer}" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                     <Label Grid.Column="1" Grid.Row="1" Content="{Binding SelectedItem.AuthorName, ElementName=CB_Avatar}" 
                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center"/>
-                    <Label Content="ワールド" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Content="{x:Static pr:Resources.World}" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                     <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding WorldName.Value}" FontSize="16" VerticalContentAlignment="Center"/>
-                    <Label Content="製作者" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Label Content="{x:Static pr:Resources.Producer2}" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                     <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding WorldAuthorName.Value}" FontSize="16" VerticalContentAlignment="Center"/>
-                    <Button Grid.ColumnSpan="3" Grid.Row="4" ToolTip="写真の情報のみを保存します。" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"
+                    <Button Grid.ColumnSpan="3" Grid.Row="4" ToolTip="{x:Static pr:Resources.SaveButtonTooltip}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"
                             Command="{Binding SavePhotoDataAsyncCommand}">
                         <Button.CommandParameter>
                             <System:Boolean>False</System:Boolean>
@@ -349,33 +350,33 @@
                             <Viewbox>
                                 <StackPanel Orientation="Horizontal">
                                     <ui:SymbolIcon Symbol="Save"/>
-                                    <TextBlock Text="写真の情報を保存" Margin="5,0,0,0"/>
+                                    <TextBlock Text="{x:Static pr:Resources.SaveButton}" Margin="5,0,0,0"/>
                                 </StackPanel>
                             </Viewbox>
                         </Button.Content>
                     </Button>
-                    <ui:AppBarButton Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" ToolTip="アバター名をコピーできます。"
+                    <ui:AppBarButton Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" ToolTip="{x:Static pr:Resources.CopyAvatar}"
                                      Command="{Binding CopyStringCommand, Mode=OneWay}" CommandParameter="{Binding SelectedItem.Name ,ElementName=CB_Avatar}">
                         <ui:AppBarButton.Icon>
                             <ui:SymbolIcon Symbol="Copy">
                             </ui:SymbolIcon>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" ToolTip="製作者名をコピーできます。"
+                    <ui:AppBarButton Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" ToolTip="{x:Static pr:Resources.CopyProducer}"
                                      Command="{Binding CopyStringCommand, Mode=OneWay}" CommandParameter="{Binding SelectedItem.AuthorName, ElementName=CB_Avatar}">
                         <ui:AppBarButton.Icon >
                             <ui:SymbolIcon Symbol="Copy">
                             </ui:SymbolIcon>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" ToolTip="ワールド名をコピーできます。"
+                    <ui:AppBarButton Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" ToolTip="{x:Static pr:Resources.CopyWorld}"
                                      Command="{Binding CopyStringCommand, Mode=OneWay}" CommandParameter="{Binding WorldName.Value}">
                         <ui:AppBarButton.Icon>
                             <ui:SymbolIcon Symbol="Copy">
                             </ui:SymbolIcon>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" ToolTip="製作者名をコピーできます。"
+                    <ui:AppBarButton Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" ToolTip="{x:Static pr:Resources.CopyProducer2}"
                                      Command="{Binding CopyStringCommand, Mode=OneWay}" CommandParameter="{Binding WorldAuthorName.Value}">
                         <ui:AppBarButton.Icon>
                             <ui:SymbolIcon Symbol="Copy">
@@ -440,9 +441,9 @@
                             <RowDefinition Height="6*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="投稿内容" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="{x:Static pr:Resources.Post}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <ui:AppBarButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto"
-                                         Command="{Binding CopyStringCommand}" CommandParameter="{Binding TweetText.Value}" ToolTip="投稿内容をコピーできます。">
+                                         Command="{Binding CopyStringCommand}" CommandParameter="{Binding TweetText.Value}" ToolTip="{x:Static pr:Resources.CopyPost}">
                             <ui:AppBarButton.Icon>
                                 <ui:SymbolIcon Symbol="Copy"/>
                             </ui:AppBarButton.Icon>

@@ -13,6 +13,9 @@ using System.Windows;
 using VRCToolBox.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Toolkit.Uwp.Notifications;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace VRCToolBox
 {
@@ -27,6 +30,7 @@ namespace VRCToolBox
         internal System.Windows.Media.Imaging.BitmapImage ErrorImage { get; private set; }
         public App() : base()
         {
+            SetLanguage(ProgramSettings.Settings.Language);
             splashScreen = new SplashScreen("images/SplashScreen.png");
             splashScreen.Show(false);
 
@@ -132,6 +136,12 @@ namespace VRCToolBox
                     dir.Delete(true);
                 }
             });
+        }
+        private void SetLanguage(string culture)
+        {
+                CultureInfo cultureInfo = new CultureInfo(culture);
+                Thread.CurrentThread.CurrentCulture = cultureInfo;
+                Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
         private void SetFontStyle()
         {

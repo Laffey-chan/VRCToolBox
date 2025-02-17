@@ -72,6 +72,8 @@ namespace VRCToolBox.Settings
         /// <summary>通知する際の間隔。</summary>
         internal ReactivePropertySlim<float> NotificationInterval { get; } = new ReactivePropertySlim<float>();
 
+        internal ReactivePropertySlim<string> Language { get; } = new ReactivePropertySlim<string>();
+
         public M_Settings() : this(new ProgramSettings()) { }
         public M_Settings(ProgramSettings settings)
         {
@@ -97,6 +99,7 @@ namespace VRCToolBox.Settings
             UseVCCProjectBackupPath.AddTo(_compositeDisposable);
             SendToastNotification.AddTo(_compositeDisposable);
             NotificationInterval.AddTo(_compositeDisposable);
+            Language.AddTo(_compositeDisposable);
             ExtensionData.AddTo(_compositeDisposable);
 
             UpdateFrom();
@@ -129,6 +132,7 @@ namespace VRCToolBox.Settings
             UseVCCProjectBackupPath.Value = _settings.UseVCCProjectBackupPath;
             SendToastNotification.Value   = _settings.SendToastNotification;
             NotificationInterval.Value    = _settings.NotificationInterval;
+            Language.Value                = _settings.Language;
             ExtensionData.Value           = _settings.ExtensionData;
         }
         internal async Task SaveSettingsAsync()
@@ -153,6 +157,7 @@ namespace VRCToolBox.Settings
             _settings.UseVCCProjectBackupPath = UseVCCProjectBackupPath.Value;
             _settings.SendToastNotification   = SendToastNotification.Value;
             _settings.NotificationInterval    = NotificationInterval.Value;
+            _settings.Language                = Language.Value;
             _settings.ExtensionData           = ExtensionData.Value;
 
             Directory.CreateDirectory(ProgramConst.SettingsDirectoryPath);

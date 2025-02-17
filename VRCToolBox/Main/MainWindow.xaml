@@ -12,6 +12,7 @@
         xmlns:p="clr-namespace:VRCToolBox.Pictures.ViewModel"
         xmlns:u="clr-namespace:VRCToolBox.UnityEntry"
         xmlns:m="clr-namespace:VRCToolBox.Maintenance"
+        xmlns:pr="clr-namespace:VRCToolBox.Properties"
         xmlns:r="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.WPF"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
@@ -38,28 +39,28 @@
     <ui:NavigationView x:Name="C_Navi" PaneDisplayMode="Auto" IsBackButtonVisible="Collapsed" IsBackEnabled="False" AlwaysShowHeader="True" 
                        IsPaneToggleButtonVisible="True" OpenPaneLength="150" IsSettingsVisible="False">
         <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem Content="ホーム" Icon="Home" Tag="{x:Type Main:VM_Home}" IsSelected="True"/>
-            <ui:NavigationViewItem Content="ログ検索" Tag="{x:Type vl:LogViewerViewModel}">
+            <ui:NavigationViewItem Content="{x:Static pr:Resources.Home}" Icon="Home" Tag="{x:Type Main:VM_Home}" IsSelected="True"/>
+            <ui:NavigationViewItem Content="{x:Static pr:Resources.LogSearch}" Tag="{x:Type vl:LogViewerViewModel}">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Glyph="&#xF000;"/>
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="写真" Tag="{x:Type p:PhotoExploreViewModel}">
+            <ui:NavigationViewItem Content="{x:Static pr:Resources.Photos}" Tag="{x:Type p:PhotoExploreViewModel}">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Glyph="&#xEB9F;"/>
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="Unity" Tag="{x:Type u:UnityListViewModel}">
+            <ui:NavigationViewItem Content="{x:Static pr:Resources.Unity}" Tag="{x:Type u:UnityListViewModel}">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Glyph="&#xECAA;"/>
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="データ" Tag="{x:Type m:VM_MaintenanceBase}">
+            <ui:NavigationViewItem Content="{x:Static pr:Resources.Data}" Tag="{x:Type m:VM_MaintenanceBase}">
                 <ui:NavigationViewItem.Icon>
                     <ui:FontIcon Glyph="&#xF156;"/>
                 </ui:NavigationViewItem.Icon>
             </ui:NavigationViewItem>
-            <ui:NavigationViewItem Content="設定" Icon="Setting" Tag="{x:Type s:VM_SettingsBase}">
+            <ui:NavigationViewItem Content="{x:Static pr:Resources.Settings}" Icon="Setting" Tag="{x:Type s:VM_SettingsBase}">
             </ui:NavigationViewItem>
         </ui:NavigationView.MenuItems>
         <i:Interaction.Triggers>
@@ -88,9 +89,9 @@
                     <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
                         <Button x:Name="C_Update" Command="{Binding UpdateAsyncCommand}" Background="Transparent" VerticalAlignment="Center" 
                                 Visibility="{Binding CheckUpdateExists.Result, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Text="アップデートがあります。" FontSize="20"/>
+                            <TextBlock Text="{x:Static pr:Resources.UpdateAvailable}" FontSize="20"/>
                         </Button>
-                        <TextBlock Text="DL中……" VerticalAlignment="Center" Margin="5,0,0,0"
+                        <TextBlock Text="{x:Static pr:Resources.Downloading}" VerticalAlignment="Center" Margin="5,0,0,0"
                                    Visibility="{Binding IsDownloading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <ui:ProgressRing IsActive="{Binding IsDownloading}" Margin="5,0,0,0"/>
                     </StackPanel>
@@ -106,7 +107,7 @@
                             <Viewbox>
                                 <StackPanel Orientation="Horizontal">
                                     <ui:FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xEA8F;"/>
-                                    <TextBlock Grid.Column="1" Text="Join通知" Margin="0,0,0,0"/>
+                                    <TextBlock Grid.Column="1" Text="{x:Static pr:Resources.JoinNotification}" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Viewbox>
                         </Button>
@@ -116,7 +117,7 @@
                             <Viewbox>
                                 <StackPanel Orientation="Horizontal">
                                     <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF000;"/>
-                                    <TextBlock Grid.Column="1" Text="ログの移動" Margin="0,0,0,0"/>
+                                    <TextBlock Grid.Column="1" Text="{x:Static pr:Resources.MoveLogs}" Margin="0,0,0,0"/>
                                 </StackPanel>
                             </Viewbox>
                         </Button>
@@ -126,7 +127,7 @@
                             <Viewbox>
                                 <StackPanel Orientation="Horizontal">
                                     <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEB9F;"/>
-                                    <TextBlock Grid.Column="1" Text="写真の移動" Margin="3,0,0,0"/>
+                                    <TextBlock Grid.Column="1" Text="{x:Static pr:Resources.MovePhotos}" Margin="3,0,0,0"/>
                                 </StackPanel>
                             </Viewbox>
                         </Button>
@@ -135,7 +136,7 @@
                             <Viewbox>
                                 <StackPanel Orientation="Horizontal">
                                     <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xECAA;"/>
-                                    <TextBlock Grid.Column="1" Text="Unityプロジェクト&#10;一括バックアップ" Margin="3,0,0,0"/>
+                                    <TextBlock Grid.Column="1" Text="{x:Static pr:Resources.BackupUnityProjects}" Margin="3,0,0,0"/>
                                 </StackPanel>
                             </Viewbox>
                         </Button>
